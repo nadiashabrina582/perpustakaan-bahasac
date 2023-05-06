@@ -5,6 +5,6 @@ Nim              : 2208108010076
 Username GITHUB  : nadiashabrina582
 
 
-Nama             :
-Nim              :
-Username GITHUB  :
+Nama             : Haura Najma kamila
+Nim              : 2208108010066
+Username GITHUB  : hauranajmakamila
