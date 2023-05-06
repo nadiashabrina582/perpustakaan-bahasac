@@ -15,22 +15,22 @@ void searchBook(struct Book books[], int num_books, char keyword[]) {
     int i, found = 0;
     for (i = 0; i < num_books; i++) {
         if (strstr(books[i].title, keyword) != NULL || strstr(books[i].author, keyword) != NULL) {
-            printf("Book #%d\n", i+1);
-            printf("Title: %s\n", books[i].title);
-            printf("Author: %s\n", books[i].author);
-            printf("Publisher: %s\n", books[i].publisher);
-            printf("Number of Pages: %d\n", books[i].num_pages);
+            printf("Buku #%d\n", i+1);
+            printf("Judul: %s\n", books[i].title);
+            printf("Penulis: %s\n", books[i].author);
+            printf("Penerbit: %s\n", books[i].publisher);
+            printf("Jumlah halaman: %d\n", books[i].num_pages);
             if (books[i].is_borrowed) {
-                printf("Status: Borrowed\n");
+                printf("Status: Di pinjam\n");
             }
             else {
-                printf("Status: Available\n");
+                printf("Status: Tersedia\n");
             }
             found = 1;
         }
     }
     if (!found) {
-        printf("No books found with the keyword \"%s\"\n", keyword);
+        printf("Tidak ditemukan buku dengan kata kunci \"%s\"\n", keyword);
     }
 }
 
@@ -40,18 +40,18 @@ void borrowBook(struct Book books[], int num_books, char title[]) {
     for (i = 0; i < num_books; i++) {
         if (strcmp(books[i].title, title) == 0) {
             if (books[i].is_borrowed) {
-                printf("Book \"%s\" is already borrowed.\n", title);
+                printf("Buku \"%s\" sudah dipinjam.\n", title);
             }
             else {
                 books[i].is_borrowed = 1;
-                printf("Book \"%s\" has been borrowed.\n", title);
+                printf("Buku \"%s\" telah dipinjam.\n", title);
             }
             found = 1;
             break;
         }
     }
     if (!found) {
-        printf("Book \"%s\" not found.\n", title);
+        printf("Buku \"%s\" tidak temukan.\n", title);
     }
 }
 
@@ -63,17 +63,17 @@ void returnBook(struct Book books[], int num_books, char title[]) {
         if (strcmp(books[i].title, title) == 0) {
             if (books[i].is_borrowed) {
                 books[i].is_borrowed = 0;
-                printf("Book \"%s\" has been returned.\n", title);
+                printf("Buku \"%s\" telah dikembalikan.\n", title);
             }
             else {
-                printf("Book \"%s\" has not been borrowed.\n", title);
+                printf("Buku \"%s\" belum dipinjam.\n", title);
             }
             found = 1;
             break;
         }
     }
     if (!found) {
-        printf("Book \"%s\" not found.\n", title);
+        printf("Buku \"%s\" tidak di temukan.\n", title);
     }
 }
 
@@ -84,22 +84,22 @@ int main() {
 
     // loop untuk menambahkan buku
     while (num_books < 50) {
-        printf("Add Book #%d\n", num_books+1);
+        printf("Tambahkan Buku #%d\n", num_books+1);
 
         // input informasi buku
-        printf("Title: ");
+        printf("Judul: ");
         fgets(books[num_books].title, sizeof(books[num_books].title), stdin);
         books[num_books].title[strcspn(books[num_books].title, "\n")] = '\0';
 
-        printf("Author: ");
+        printf("Penulis: ");
         fgets(books[num_books].author, sizeof(books[num_books].author), stdin);
 		books[num_books].author[strcspn(books[num_books].author, "\n")] = '\0';
 		
-		printf("Publisher: ");
+		printf("Penerbit: ");
     	fgets(books[num_books].publisher, sizeof(books[num_books].publisher), stdin);
     	books[num_books].publisher[strcspn(books[num_books].publisher, "\n")] = '\0';
 
-    printf("Number of Pages: ");
+    printf("Jumlah Halaman: ");
     scanf("%d", &books[num_books].num_pages);
 
     // set status buku ke available
@@ -109,7 +109,7 @@ int main() {
 
     // tanyakan apakah user ingin menambahkan buku lagi
     char add_more[10];
-    printf("Add more books? (y/n) ");
+    printf("Tamabahkan buku lagi? (y/n) ");
     scanf("%s", add_more);
     if (strcmp(add_more, "n") == 0) {
         break;
@@ -119,19 +119,19 @@ int main() {
 }
 
 // tampilkan informasi buku
-printf("\nLibrary Catalog\n");
+printf("\nKatalog Perpustakaan\n");
 int i;
 for (i = 0; i < num_books; i++) {
-    printf("\nBook #%d\n", i+1);
-    printf("Title: %s\n", books[i].title);
-    printf("Author: %s\n", books[i].author);
-    printf("Publisher: %s\n", books[i].publisher);
-    printf("Number of Pages: %d\n", books[i].num_pages);
+    printf("\nBuku #%d\n", i+1);
+    printf("Judul: %s\n", books[i].title);
+    printf("Penulis: %s\n", books[i].author);
+    printf("Penerbit: %s\n", books[i].publisher);
+    printf("Jumlah Halaman: %d\n", books[i].num_pages);
     if (books[i].is_borrowed) {
-        printf("Status: Borrowed\n");
+        printf("Status: Di Pinjam\n");
     }
     else {
-        printf("Status: Available\n");
+        printf("Status: Tersedia\n");
     }
 }
 
@@ -140,17 +140,17 @@ int choice;
 char keyword[100], title[100];
 do {
     printf("\nMenu\n");
-    printf("1. Search Book\n");
-    printf("2. Borrow Book\n");
-    printf("3. Return Book\n");
-    printf("4. Exit\n");
-    printf("Enter your choice: ");
+    printf("1. Cari Buku\n");
+    printf("2. Pinjam Buku\n");
+    printf("3. Kembalikan Buku\n");
+    printf("4. Keluar\n");
+    printf("Masukkan Pilihan Anda: ");
     scanf("%d", &choice);
 
     switch(choice) {
         case 1:
             // mencari buku
-            printf("Enter keyword: ");
+            printf("Masukkan Kata Kunci: ");
             getchar(); // membersihkan input buffer
             fgets(keyword, sizeof(keyword), stdin);
             keyword[strcspn(keyword, "\n")] = '\0';
@@ -158,7 +158,7 @@ do {
             break;
         case 2:
             // meminjam buku
-            printf("Enter title: ");
+            printf("Masukkan Judul: ");
             getchar(); // membersihkan input buffer
             fgets(title, sizeof(title), stdin);
             title[strcspn(title, "\n")] = '\0';
@@ -166,7 +166,7 @@ do {
             break;
         case 3:
             // mengembalikan buku
-            printf("Enter title: ");
+            printf("Masukkan Judul: ");
             getchar(); // membersihkan input buffer
             fgets(title, sizeof(title), stdin);
             title[strcspn(title, "\n")] = '\0';
@@ -174,14 +174,13 @@ do {
             break;
         case 4:
             // keluar dari program
-            printf("Goodbye!\n");
+            printf("Terima kasih!\n");
             break;
         default:
-            printf("Invalid choice.\n");
+            printf("Pilihan Salah.\n");
             break;
     }
 } while (choice != 4);
 
 return 0;
 }
-
